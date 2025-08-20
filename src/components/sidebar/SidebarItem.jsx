@@ -52,7 +52,7 @@ const SidebarItem = ({ menu, index, expanded, isOpen, toggleMenu }) => {
                             hover:bg-[var(--color-primary-black)] hover:text-[var(--color-primary-white)]
                             transition-all duration-300 ease-in-out
                             before:content-[''] before:absolute before:left-0 before:top-0 
-                            before:w-[1px] before:h-full before:bg-[var(--color-black-variant-one)]"
+                            before:w-[1px] before:h-full before:bg-[var(--black-variant-one)]"
                                 >
                                     {child.label}
                                 </Link>

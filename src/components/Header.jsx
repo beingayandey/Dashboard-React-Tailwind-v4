@@ -1,48 +1,48 @@
-import { Sidebar, SidebarIcon } from '@phosphor-icons/react'
-import React from 'react'
+import React, { useState } from "react";
+import { SidebarIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
-const Header = ({ toggleSidebar }) => {
+import Breadcrumbs from "./header/Breadcrumbs";
+import SearchBar from "./header/SearchBar";
+import SearchModal from "./header/SearchModal";
+import NotificationsButton from "./header/NotificationsButton";
+import ThemeToggle from "./header/ThemeToggle";
+
+const Header = ({ toggleSidebar, toggleNotification }) => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <>
-            <header className='main-header z-50 bg-[var(--color-primary-white)] shadow-[var(--sidebar-boxshadow)]
-        '>
-
-                <div className="inner-header p-4">
-
-                    <div className="flex justify-between items-center" >
-
-                        <div className="left-menu flex items-center">
-
-                            <div className="sidebar-collapsed cursor-pointer me-4 " onClick={toggleSidebar} >
-                                <SidebarIcon size={20} />
-                            </div>
-                            <div className="breadcrumbs">
-                                <ol className="flex space-x-3 text-[length:var(--font-small)]">
-                                    <li className="flex items-center">
-                                        <a href="javaScript:;" className="flex items-center text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white">Snow</a>
-                                    </li>
-                                    <li className="flex items-center space-x-1">
-                                        <span className="text-black/40 dark:text-white/40">/</span>
-                                        <a href="javaScript:;" className="flex items-center px-3 text-black dark:text-white">Widgets</a>
-                                    </li>
-                                </ol>
-
-                            </div>
-
-
+        <header className="main-header z-50 bg-[var(--color-primary-white)] shadow-[var(--sidebar-boxshadow)]">
+            <div className="inner-header p-4">
+                <div className="flex justify-between items-center">
+                    {/* Left */}
+                    <div className="left-menu flex items-center">
+                        <div
+                            className="sidebar-collapsed cursor-pointer me-4"
+                            onClick={toggleSidebar}
+                        >
+                            <SidebarIcon size={20} className="text-[var(--color-primary-black)]" />
                         </div>
-                        <div className="middle-menu"></div>
-                        <div className="right-menu"></div>
-
-
-
+                        <Breadcrumbs />
                     </div>
 
+                    {/* Middle */}
+                    <div className="middle-menu w-[33%]">
+                        <SearchBar onOpen={() => setIsOpen(true)} />
+                    </div>
+
+                    {/* Right */}
+                    <div className="right-menu flex gap-2 items-center">
+                        <NotificationsButton onClick={toggleNotification} />
+                        <ThemeToggle />
+                    </div>
                 </div>
+            </div>
 
-            </header>
-        </>
-    )
-}
+            {/* Search Modal */}
+            <SearchModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        </header>
+    );
+};
 
-export default Header
+export default Header;

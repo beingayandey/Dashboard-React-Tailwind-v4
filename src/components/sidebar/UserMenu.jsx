@@ -12,14 +12,14 @@ const UserMenu = ({ expanded }) => {
     }, [expanded]);
 
     return (
-        <div className="user absolute bottom-0 left-0 p-2 w-full z-50 bg-[var(--color-primary-white)]">
+        <div className="user absolute bottom-0 left-0 p-2 w-full z-50 bg-[var(--color-primary-white)] ">
             {/* User Header */}
             <div
-                className="flex justify-start items-center w-full gap-2 cursor-pointer"
+                className="flex justify-start items-center w-full gap-2 cursor-pointer "
                 onClick={() => expanded && setIsUserMenuOpen(v => !v)} // only toggle if expanded
             >
-                <PhosphorIcons.User size={20} weight="duotone" />
-                {expanded && <span>User</span>}
+                <PhosphorIcons.User size={20} weight="duotone" className="text-primary-black" />
+                {expanded && <span className="text-primary-black">User</span>}
             </div>
 
             {/* Dropdown */}
